@@ -1,0 +1,22 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  text-align: center;
+}
+
+.grid {
+  margin: 50px auto;
+  border: solid 2px;
+  display: grid;  
+  grid-gap:0px;
+}
+
+.cell {
+  border: solid 1px #ccc;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.liveCell {
+  background: black;
+}

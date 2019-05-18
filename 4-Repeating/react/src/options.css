@@ -1,0 +1,20 @@
+form{ 
+    padding-top: 50px; 
+    padding-right: 20px;
+}
+
+form, button{
+    font-size: 1.5em;
+}
+.options{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.options div {
+    height: 2.5em;
+    vertical-align: baseline;
+}
+.options label {
+margin-left: 20px;
+}
