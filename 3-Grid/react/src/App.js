@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import GameEngine from "./gameengine";
+import GameEngine from "./engine/gameengine";
 import Grid from "./grid";
 
 function App() {

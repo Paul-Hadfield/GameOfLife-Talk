@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import GameEngine from "../gameengine";
+import GameEngine from "./engine/gameengine";
 import Grid from "./grid.vue";
 
 export default {

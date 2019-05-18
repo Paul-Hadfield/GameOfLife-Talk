@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Grid :gameGrid="this.grid" />
+    <Grid :gameGrid="this.grid"/>
   </div>
 </template>
 <script>
-import GameEngine from "../gameengine";
+import GameEngine from "./engine/gameengine";
 import Grid from "./grid.vue";
 import { log } from "util";
 
@@ -12,7 +12,6 @@ export default {
   name: "app",
   components: { Grid },
   created() {
-
     if (this.grid == null) {
       this.grid = this.populateGrid("blinker");
     }
