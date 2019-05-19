@@ -12,14 +12,11 @@
 import GameEngine from "./engine/gameengine";
 import Grid from "./grid.vue";
 import Options from "./options.vue";
-import { log } from "util";
 
 export default {
   name: "app",
   components: { Grid, Options },
   created() {
-    console.log("Created");
-
     if (this.grid == null) {
       this.grid = this.populateGrid("blinker");
     }
@@ -30,7 +27,6 @@ export default {
     }, 1000);
   },
   beforeDestroy() {
-    console.log("destroy");
     clearInterval(this.timer);
   },
   data() {

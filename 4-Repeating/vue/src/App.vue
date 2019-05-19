@@ -6,7 +6,6 @@
 <script>
 import GameEngine from "./engine/gameengine";
 import Grid from "./grid.vue";
-import { log } from "util";
 
 export default {
   name: "app",
