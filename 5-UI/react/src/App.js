@@ -5,72 +5,28 @@ import Grid from "./grid";
 import Options from "./options";
 
 function App() {
-  let [pattern, setPattern] = React.useState("random");
-  let [grid, setGrid] = React.useState([]);
-  let [restartKey, setRestartKey] = React.useState(0);
-  if (grid.length == 0) {
+  const setupGrid = pattern => {
     switch (pattern) {
       case "blinker":
-        grid = GameEngine.setupBlinker();
-        break;
+        return GameEngine.setupBlinker();
       case "beacon":
-        grid = GameEngine.setupBeacon();
-        break;
+        return GameEngine.setupBeacon();
       case "toad":
-        grid = GameEngine.setupToad();
-        break;
+        return GameEngine.setupToad();
       case "pulsar":
-        grid = GameEngine.setupPulsar();
-        break;
+        return GameEngine.setupPulsar();
       case "acorn":
-        grid = GameEngine.setupAcorn();
-        break;
+        return GameEngine.setupAcorn();
       case "diehard":
-        grid = GameEngine.setupDiehard();
-        break;
+        return GameEngine.setupDiehard();
       default:
-        grid = GameEngine.setupRandom();
-        break;
+        return GameEngine.setupRandom();
     }
-  }
-
-  console.log(pattern);
-
-  let rows = 0;
-  let cols = 0;
-
-  grid.forEach(cell => {
-    if (cell.x > cols) {
-      cols = cell.x;
-    }
-    if (cell.y > rows) {
-      rows = cell.y;
-    }
-  });
-
-  const dimensions = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    rows,
-    cols
   };
 
-  const getTimeoutPeriod = () => {
-    if (grid.length >= 5000) {
-      return 250;
-    }
-    if (grid.length >= 2500) {
-      return 500;
-    }
-
-    if (grid.length >= 500) {
-      return 750;
-    }
-
-    return 1000;
-  };
-
-  const timeoutPeriod = getTimeoutPeriod();
+  let [pattern, setPattern] = React.useState("random");
+  let [grid, setGrid] = React.useState(setupGrid(pattern));
+  let [restartKey, setRestartKey] = React.useState(0);
 
   React.useEffect(() => {
     const timerId = setTimeout(() => {
@@ -78,12 +34,13 @@ function App() {
         GameEngine.determineNewState(cell, grid)
       );
       setGrid(newGrid);
-    }, timeoutPeriod);
+    }, 1000);
     return () => clearTimeout(timerId);
   });
 
   const handleTypeChanged = changeEvent => {
-    pattern = setPattern(changeEvent.target.value);
+    pattern = changeEvent.target.value;
+    setPattern(pattern);
     restartGame();
   };
 
@@ -93,13 +50,13 @@ function App() {
   };
 
   const restartGame = () => {
-    setGrid([]);
+    setGrid(setupGrid(pattern));
     setRestartKey(restartKey + 1);
   };
 
   return (
     <div className="App">
-      <Grid key={restartKey} dimensions={dimensions} gameGrid={grid} />
+      <Grid key={restartKey} gameGrid={grid} />
       <Options
         pattern={pattern}
         typeChanged={handleTypeChanged}

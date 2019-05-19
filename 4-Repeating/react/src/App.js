@@ -4,29 +4,7 @@ import GameEngine from "./engine/gameengine";
 import Grid from "./grid";
 
 function App() {
-  let [grid, setGrid] = React.useState([]);
-  if (grid.length === 0) {
-    grid = GameEngine.setupBlinker();
-  }
-
-  let rows = 0;
-  let cols = 0;
-
-  grid.forEach(cell => {
-    if (cell.x > cols) {
-      cols = cell.x;
-    }
-    if (cell.y > rows) {
-      rows = cell.y;
-    }
-  });
-
-  const dimensions = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    rows,
-    cols
-  };
+  let [grid, setGrid] = React.useState(GameEngine.setupRandom());
 
   React.useEffect(() => {
     const timerId = setTimeout(() => {
@@ -40,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Grid dimensions={dimensions} gameGrid={grid} />
+      <Grid gameGrid={grid} />
     </div>
   );
 }
