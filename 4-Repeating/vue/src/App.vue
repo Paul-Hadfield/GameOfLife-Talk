@@ -12,9 +12,6 @@ export default {
   name: "app",
   components: { Grid },
   created() {
-    if (this.grid == null) {
-      this.grid = this.populateGrid("blinker");
-    }
     this.timer = setInterval(() => {
       this.grid = this.grid.map(cell =>
         GameEngine.determineNewState(cell, this.grid)
