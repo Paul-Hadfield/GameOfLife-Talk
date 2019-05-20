@@ -40,7 +40,7 @@ const GameEngine = {
   setupDiehard: () => GridSetup.diehard(),
 
   determineNewGrid: grid => {
-    return grid.map(cell => this.determineNewState(cell, grid));
+    return grid.map(cell => GameEngine.determineNewState(cell, grid));
   },
 
   determineNewState: (cell, currentGrid) => {
