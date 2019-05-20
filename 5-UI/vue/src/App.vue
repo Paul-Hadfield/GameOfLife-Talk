@@ -4,7 +4,7 @@
     <Options
       @restartClicked="handleRestartClicked"
       @typeChanged="handleTypeChanged"
-      pattern="random"
+      :pattern="this.pattern"
     />
   </div>
 </template>
