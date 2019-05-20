@@ -30,10 +30,7 @@ function App() {
 
   React.useEffect(() => {
     const timerId = setTimeout(() => {
-      const newGrid = grid.map(cell =>
-        GameEngine.determineNewState(cell, grid)
-      );
-      setGrid(newGrid);
+      setGrid(GameEngine.determineNewGrid(grid));
     }, 1000);
     return () => clearTimeout(timerId);
   });

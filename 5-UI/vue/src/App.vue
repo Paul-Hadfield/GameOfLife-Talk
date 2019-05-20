@@ -18,12 +18,11 @@ export default {
   components: { Grid, Options },
   created() {
     if (this.grid == null) {
-      this.grid = this.populateGrid("blinker");
+      this.pattern = "random";
+      this.grid = this.populateGrid(this.pattern);
     }
     this.timer = setInterval(() => {
-      this.grid = this.grid.map(cell =>
-        GameEngine.determineNewState(cell, this.grid)
-      );
+      this.grid = GameEngine.determineNewGrid(this.grid);
     }, 1000);
   },
   beforeDestroy() {
@@ -37,11 +36,12 @@ export default {
   },
   methods: {
     handleRestartClicked() {
-      this.grid = this.populateGrid(pattern);
+      this.grid = this.populateGrid(this.pattern);
       this.restartKey++;
     },
-    handleTypeChanged(pattern) {
-      this.grid = this.populateGrid(pattern);
+    handleTypeChanged(newPattern) {
+      this.pattern = newPattern;
+      this.grid = this.populateGrid(newPattern);
       this.restartKey++;
     },
     populateGrid(pattern) {

@@ -39,6 +39,10 @@ const GameEngine = {
   setupAcorn: () => GridSetup.acorn(),
   setupDiehard: () => GridSetup.diehard(),
 
+  determineNewGrid: grid => {
+    return grid.map(cell => GameEngine.determineNewState(cell, grid));
+  },
+
   determineNewState: (cell, currentGrid) => {
     return {
       x: cell.x,

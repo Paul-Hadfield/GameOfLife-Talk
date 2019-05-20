@@ -12,9 +12,7 @@ export default {
   components: { Grid },
   created() {
     this.timer = setInterval(() => {
-      this.grid = this.grid.map(cell =>
-        GameEngine.determineNewState(cell, this.grid)
-      );
+      this.grid = GameEngine.determineNewGrid(this.grid);
     }, 1000);
   },
   beforeDestroy() {
